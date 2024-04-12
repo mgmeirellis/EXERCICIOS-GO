@@ -1,3 +1,25 @@
+package uteis
+
+import "fmt"
+
+var Produto []Produtos
+
+type Produtos struct {
+	ID         int
+	Nome       string
+	Quantidade int
+	Preco      float64
+}
+
+//adicionar
+
+func Menu() {
+	fmt.Println("Escolha sua Opcao: ")
+	fmt.Println("1. Adicionar Produto")
+	fmt.Println("2. Quantidade de um produto ")
+	fmt.Println("3. Listar Produtos em estoque")
+	fmt.Println("4. Sair do Programa")
+}
 
 // funcao para adicionar
 
@@ -20,4 +42,3 @@ func AtualizarQuantidaProduto(id int, quantidade int) {
 		}
 	}
 }
-
