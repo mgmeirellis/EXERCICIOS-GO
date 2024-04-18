@@ -1,0 +1,15 @@
+package main
+
+import "fmt"
+
+func soma(numero ...int) int {
+	total := 0
+	for _, v := range numero {
+		total += v
+	}
+	return total
+}
+
+func main() {
+	fmt.Println(soma(1, 2, 3))
+}
