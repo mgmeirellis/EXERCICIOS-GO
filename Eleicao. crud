@@ -1,0 +1,93 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+// Struct para armazenar os dados de um candidato
+type Candidato struct {
+	Nome   string
+	Numero int
+}
+
+// Struct para armazenar os dados de um eleitor
+type Eleitor struct {
+	Nome   string
+	Titulo string
+}
+
+// Struct para armazenar os dados de um voto
+type Voto struct {
+	CandidatoID int
+	EleitorID   string
+}
+
+// Lista de candidatos pré-cadastrados
+var candidatos = map[int]Candidato{
+	10: {"Maria", 10},
+	20: {"João", 20},
+}
+
+// Slice para armazenar os votos
+var votos []Voto
+
+// Função para votar em um candidato
+func votar() {
+	var eleitor Eleitor
+	var candidatoID int
+
+	fmt.Println("Por favor, insira seu nome:")
+	fmt.Scanln(&eleitor.Nome)
+	fmt.Println("Por favor, insira o número do seu título de eleitor:")
+	fmt.Scanln(&eleitor.Titulo)
+
+	fmt.Println("Candidatos disponíveis para votação:")
+	for _, candidato := range candidatos {
+		fmt.Printf("%d - %s\n", candidato.Numero, candidato.Nome)
+	}
+
+	fmt.Println("Por favor, insira o número do candidato em quem você deseja votar:")
+	fmt.Scanln(&candidatoID)
+
+	if _, ok := candidatos[candidatoID]; ok {
+		voto := Voto{CandidatoID: candidatoID, EleitorID: eleitor.Titulo}
+		votos = append(votos, voto)
+		fmt.Println("Seu voto foi registrado com sucesso!")
+	} else {
+		fmt.Println("Candidato não encontrado. Por favor, insira um número válido.")
+	}
+}
+
+// Função para calcular a apuração parcial
+func apuracaoParcial() {
+	totalVotos := len(votos)
+
+	fmt.Println("Apuração Parcial:")
+	for _, candidato := range candidatos {
+		numVotos := contarVotos(candidato.Numero)
+		percentual := float64(numVotos) / float64(totalVotos) * 100
+		fmt.Printf("%s (%d): %d votos - %.2f%%\n", candidato.Nome, candidato.Numero, numVotos, percentual)
+	}
+}
+
+// Função para contar os votos de um candidato específico
+func contarVotos(numeroCandidato int) int {
+	total := 0
+	for _, voto := range votos {
+		if voto.CandidatoID == numeroCandidato {
+			total++
+		}
+	}
+	return total
+}
+
+// Função para conferir os votos
+func conferirVotos() {
+	fmt.Println("Lista de votos:")
+	for _, voto := range votos {
+		fmt.Printf("Eleitor: %s - Votou no candidato %d\n", voto.EleitorID, voto.CandidatoID)
+	}
+}
+
+
