@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func soma(numeros ...int) int {
+	total := 0
+	for _, num := range numeros {
+		total += num
+	}
+	return total
+}
+
+func main() {
+	var num1, num2, num3, num4, num5 int
+
+	fmt.Println("Digite o primeiro número:")
+	fmt.Scanln(&num1)
+
+	fmt.Println("Digite o segundo número:")
+	fmt.Scanln(&num2)
+
+	fmt.Println("Digite o terceiro número:")
+	fmt.Scanln(&num3)
+
+	fmt.Println("Digite o terceiro número:")
+	fmt.Scanln(&num4)
+
+	fmt.Println("Digite o terceiro número:")
+	fmt.Scanln(&num5)
+
+	fmt.Println("A soma dos números é:", soma(num1, num2, num3,num4,num5))
+}
+
