@@ -1,0 +1,27 @@
+package main
+
+import "fmt"
+
+func media(valores ...float64) float64 {
+	soma := 0.0
+	for _, valor := range valores {
+		soma += valor
+	}
+	return soma / float64(len(valores))
+}
+
+func main() {
+	fmt.Println(media(1, 2, 3)) // Média de inteiros
+	var valor1, valor2, valor3 float64
+
+	fmt.Println("Digite o valor 1")
+	fmt.Scan(&valor1)
+
+	fmt.Println("Digite o valor 2")
+	fmt.Scan(&valor2)
+
+	fmt.Println("Digite o valor 3")
+	fmt.Scan(&valor3)
+
+	fmt.Println(media(valor1, valor2, valor3))
+}
